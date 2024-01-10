@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f5f9; /* Light blue background */
+    margin: 0;
+}
+
+.container {
+    max-width: 90%;
+    margin: 50px auto;
+    text-align: center;
+    background-color: #fff; /* White container background */
+    padding: 20px;
+    border-radius: 10px; /* Smooth border radius */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+}
+
+h2 {
+    /* color: #3498db; Company logo blue */
+    text-align: center; /* Center-align the text */
+    margin-top: 20px; /* Add margin for spacing */
+    width: 100%;
+}
+.header {
+    margin-bottom: 20px;
+    
+}
+
+
+.logo {
+    width: 100px;
+    height: 80px;
+    border-radius: 50%; /* Circular border radius */
+    margin-right: 20px;
+}
+
+input {
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #3498db; /* Company logo blue */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 5px;
+    overflow: hidden; /* Hide table borders */
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}

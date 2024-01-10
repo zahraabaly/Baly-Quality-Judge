@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Baly Quality Judge</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="{{ url_for('static', filename='baly-logo.png') }}" alt="Baly Logo" class="logo">
+            <h1>Baly Quality Judge</h1>
+        </div>
+        <label for="driverId">Driver ID:</label>
+        <input type="text" id="driverId" placeholder="Enter Driver ID">
+        <button onclick="searchDriver()">Search</button><br>
+        <table id="resultTable">
+            <!-- Table rows will be inserted here -->
+        </table>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
