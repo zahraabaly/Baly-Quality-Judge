@@ -12,6 +12,12 @@
             <img src="{{ url_for('static', filename='baly-logo.png') }}" alt="Baly Logo" class="logo">
             <h1>Baly Quality Judge</h1>
         </div>
+    </div>   
+
+    <div class="container">
+        <div class="header">
+            <h1>Driver History</h1>
+        </div>
         <label for="driverId">Driver ID:</label>
         <input type="text" id="driverId" placeholder="Enter Driver ID">
         <button onclick="searchDriver()">Search</button><br>
@@ -19,6 +25,109 @@
             <!-- Table rows will be inserted here -->
         </table>
     </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Cases Record</h1>
+        </div>
+
+        <table id="formTable">
+            <tr>
+                <td>
+                    <label for="insertDriverId">Driver ID:</label>
+                </td>
+                <td>
+                    <input type="text" id="insertDriverId" placeholder="Enter Driver ID">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="insertFeature">Feature:</label>
+                </td>
+                <td>
+                    <select id="insertFeature">
+                        <option value="No feature">No feature selected</option>
+                        <option value="Harassment">Harassment</option>
+                        <option value="Driving Under Influence">Driving Under Influence</option>
+                        <option value="Force drop off by driver">Force drop off by driver</option>
+                        <option value="Suspect (Harassment)">Suspect (Harassment)</option>
+                        <option value="Suspect (FDO)">Suspect (FDO)</option>
+                        <option value="Suspect (Driving Under Influence)">Suspect (Driving Under Influence)</option>
+                        <option value="Fake ride  (Start and end the trip)">Fake ride  (Start and end the trip)</option>
+                        <option value="Another person in the car">Another person in the car</option>
+                        <option value="Captain Took Extra Money (deliberately)">Captain Took Extra Money (deliberately)</option>
+                        <option value="Offline payment request">Offline payment request</option>
+                        <option value="Bad Vehicle Conditions (Poor Hygiene)">Bad Vehicle Conditions (Poor Hygiene)</option>
+                        <option value="Cancellation Due Commission">Cancellation Due Commission</option>
+                        <option value="AC-OFF">AC-OFF</option>
+                        <option value="Car/Driver Mismatch">Car/Driver Mismatch</option>
+                        <option value="Extensive violations (EM + Bad Behavior)">Extensive violations (EM + Bad Behavior)</option>
+                        <option value="Extensive violations (EM + Car mismatch)">Extensive violations (EM + Car mismatch)</option>
+                        <option value="Extensive violations (EM + CDC)">Extensive violations (EM + CDC)</option>
+                        <option value="Captain Bad Behavior">Captain Bad Behavior</option>
+                        <option value="Captain Bad Behavior (asked for EM)">Captain Bad Behavior (asked for EM)</option>
+                        <option value="Captain Bad Behavior (contact after the trip)">Captain Bad Behavior (contact after the trip)</option>
+                        <option value="Captain Bad Behavior (cursing & yelling at the customer)">Captain Bad Behavior (cursing & yelling at the customer)</option>
+                        <option value="Captain Bad Behavior (customer cancellation)">Captain Bad Behavior (customer cancellation)</option>
+                        <option value="Captain Bad Behavior (ride fare/prices)">Captain Bad Behavior (ride fare/prices)</option>
+                        <option value="Captain Bad Behavior (rude manner)">Captain Bad Behavior (rude manner)</option>
+                        <option value="Captain Bad Behavior (Dropped before Destination)">Captain Bad Behavior (Dropped before Destination)</option>
+                        <option value="Captain Bad Behavior (toward cc agent)">Captain Bad Behavior (toward cc agent)</option>
+                        <option value="Captain Bad Behavior (customer not using ride options)">Captain Bad Behavior (customer not using ride options)</option>
+                        <option value="Captain Bad Behavior (Flirting)">Captain Bad Behavior (Flirting)</option>
+                        <option value="Captain Bad Behavior (Leaving the customer)">Captain Bad Behavior (Leaving the customer)</option>
+                        <option value="Educational Cases (Loud speaker)">Educational Cases (Loud speaker)</option>
+                        <option value="Educational Cases (Outfit- Shorts -Flipflop)">Educational Cases (Outfit- Shorts -Flipflop)</option>
+                        <option value="Educational Cases (Reckless driving)">Educational Cases (Reckless driving)</option>
+                        <option value="Educational Cases (Smoking)">Educational Cases (Smoking)</option>
+                        <option value="Educational Cases (stopping for personal reasons)">Educational Cases (stopping for personal reasons)</option>
+                        <option value="Educational Cases (Tallktive)">Educational Cases (Tallktive)</option>
+                        <option value="Educational Cases (Yelling & Cursing on the street)">Educational Cases (Yelling & Cursing on the street)</option>
+                        <option value="Educational Cases (Using phone)">Educational Cases (Using phone)</option>
+                        <option value="Education (EM) First time only">Education (EM) First time only</option>
+                        <option value="Rating 4.7 per month">Rating 4.7 per month</option>
+                        <option value="Delivering lost items to ops or customers">Delivering lost items to ops or customers</option>
+                        <option value="1 Referral (To reduce points)">1 Referral (To reduce points)</option>
+                        <option value="2 Referrals (For terminated drivers)">2 Referrals (For terminated drivers)</option>
+                        <option value="Referral (Instead of 30K or less) (For blocked drivers)">Referral (Instead of 30K or less) (For blocked drivers)</option>
+                        <option value="Referral (Instead of 50K) (For blocked drivers)">Referral (Instead of 50K) (For blocked drivers)</option>
+                        <option value="Good Behavior">Good Behavior</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="insertCity">City:</label>
+                </td>
+                <td>
+                    <select id="insertCity">
+                        <!-- Options for the City dropdown -->
+                        <option value="select city">select city</option>
+                        <option value="Baghdad">Baghdad</option>
+                        <option value="Basra">Basra</option>
+                        <option value="Najaf">Najaf</option>
+                        <option value="Deyala">Deyala</option>
+                        <option value="Karbala">Karbala</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="insertServiceType">Service Type:</label>
+                </td>
+                <td>
+                    <select id="insertServiceType">
+                        <option value="select service type">select service type</option>
+                        <option value="Plus">Plus</option>
+                        <option value="Eco">Eco</option>
+                    </select>
+                </td>
+            </tr>
+        </table><br><br>
+        <button onclick="insertData()">Insert Data</button>
+    </div>
+
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

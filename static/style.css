@@ -2,11 +2,12 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f0f5f9; /* Light blue background */
     margin: 0;
+    margin-bottom: 30px;
 }
 
 .container {
     max-width: 90%;
-    margin: 50px auto;
+    margin: 30px 50px auto;
     text-align: center;
     background-color: #fff; /* White container background */
     padding: 20px;
@@ -21,8 +22,7 @@ h2 {
     width: 100%;
 }
 .header {
-    margin-bottom: 20px;
-    
+    margin-bottom: 30px; 
 }
 
 
@@ -33,7 +33,7 @@ h2 {
     margin-right: 20px;
 }
 
-input {
+input, select {
     padding: 10px;
     margin-right: 10px;
     border-radius: 5px;
@@ -63,4 +63,16 @@ table, th, td {
 th, td {
     padding: 12px;
     text-align: center;
+}
+
+
+#formTable {
+    width: 50%; /* Make the table take full width */
+    border: 0;
+    text-align: right;
+}
+
+#myTable td {
+    text-align: right; /* Align the content of table cells to the right */
+    padding: 0;
 }

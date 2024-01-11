@@ -17,3 +17,4 @@ function searchDriver() {
     xhr.open("GET", "/search?driverId=" + driverId, true);
     xhr.send();
 }
+
