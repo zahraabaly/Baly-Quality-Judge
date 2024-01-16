@@ -18,3 +18,32 @@ function searchDriver() {
     xhr.send();
 }
 
+
+function insertData() {
+    var driverId = document.getElementById("insertDriverId").value;
+    var reason = document.getElementById("insertReason").value;
+    var city = document.getElementById("insertCity").value;
+    var serviceType = document.getElementById("insertServiceType").value;
+
+    // Use AJAX to send a request to the server
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("Response:", this.responseText);
+            // Optionally, you can update the UI or provide user feedback here
+        }
+    };
+
+    xhr.open("POST", "/insert_data", true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+    // Send data as JSON in the request body
+    xhr.send(JSON.stringify({
+        driverId: driverId,
+        reason: reason,
+        city: city,
+        serviceType: serviceType
+    }));
+}
+
+
