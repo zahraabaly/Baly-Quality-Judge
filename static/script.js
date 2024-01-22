@@ -21,10 +21,16 @@ function searchDriver() {
 
 function insertData() {
     var driverId = document.getElementById("insertDriverId").value;
-    var reason = document.getElementById("insertReason").value;
+    var reason = document.getElementById("insertFeature").value;
     var city = document.getElementById("insertCity").value;
     var serviceType = document.getElementById("insertServiceType").value;
 
+    // Check if essential fields are not empty
+    if (!driverId || !reason || !city || !serviceType) {
+        alert("Please fill in all required fields.");
+        return;
+    }
+    
     // Use AJAX to send a request to the server
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {

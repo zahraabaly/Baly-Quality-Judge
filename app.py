@@ -3,6 +3,7 @@ import pandas as pd
 from google.oauth2 import service_account
 import gspread
 from datetime import datetime
+import traceback
 # from google.auth.transport.requests import Request
 from google.oauth2.service_account import Credentials as ServiceAccountCredentials
 
@@ -46,7 +47,7 @@ def insert_data():
 
         # Authorize and open the Google Sheet
         scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-        creds = ServiceAccountCredentials.from_json_keyfile_name("your-credentials.json", scope)
+        creds = ServiceAccountCredentials.from_json_keyfile_name("C:/Users/lenovo/Desktop/New project/baly-quality-judge-07fdacfafbc5.json", scope)
         client = gspread.authorize(creds)
         
         # Open the Google Sheet by title
@@ -56,8 +57,6 @@ def insert_data():
         # worksheet name is "CC Cases"
         sheet = sh.worksheet("CC Cases")
         
-        # sheet = client.open("Your Google Sheet Title").sheet1  # Replace with your sheet title
-
         # Get the last empty row in column B
         next_row = len(sheet.col_values(2)) + 1
 
@@ -70,6 +69,8 @@ def insert_data():
 
         return jsonify({"status": "success"})
     except Exception as e:
+        print("Error during data insertion:", str(e))
+        traceback.print_exc()
         return jsonify({"status": "error", "message": str(e)})
 
 
