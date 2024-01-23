@@ -12,19 +12,19 @@ scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/au
 creds = service_account.Credentials.from_service_account_file("C:/Users/lenovo/Desktop/New project/baly-quality-judge-07fdacfafbc5.json", scopes=scope)
 gc = gspread.authorize(creds)
 
-# Function to get the updated DataFrame from the Google Sheet
+# Function to get the updated worksheet
 def get_updated_worksheet():
     sh = gc.open("All Quality Judge (New process)")
     worksheet = sh.worksheet("CC Cases")
     return worksheet
 
-# Initial DataFrame
+# Initial Worksheet
 worksheet = get_updated_worksheet()
 
 # Function to get the updated DataFrame from the Google Sheet
 def get_updated_dataframe():
-    sh = gc.open("All Quality Judge (New process)")
-    worksheet = sh.worksheet("CC Cases")
+    global worksheet
+    worksheet = get_updated_worksheet()
     data_list = worksheet.get_all_records()
     df = pd.DataFrame(data_list)
     return df
