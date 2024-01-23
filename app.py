@@ -12,14 +12,25 @@ scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/au
 creds = service_account.Credentials.from_service_account_file("C:/Users/lenovo/Desktop/New project/baly-quality-judge-07fdacfafbc5.json", scopes=scope)
 gc = gspread.authorize(creds)
 
-# Open the Google Sheet by title
-spreadsheet_title = "All Quality Judge (New process)"
-sh = gc.open(spreadsheet_title)
+# Function to get the updated DataFrame from the Google Sheet
+def get_updated_worksheet():
+    sh = gc.open("All Quality Judge (New process)")
+    worksheet = sh.worksheet("CC Cases")
+    return worksheet
 
-# worksheet name is "CC Cases"
-worksheet = sh.worksheet("CC Cases")
-data_list = worksheet.get_all_records()
-df = pd.DataFrame(data_list)
+# Initial DataFrame
+worksheet = get_updated_worksheet()
+
+# Function to get the updated DataFrame from the Google Sheet
+def get_updated_dataframe():
+    sh = gc.open("All Quality Judge (New process)")
+    worksheet = sh.worksheet("CC Cases")
+    data_list = worksheet.get_all_records()
+    df = pd.DataFrame(data_list)
+    return df
+
+# Initial DataFrame
+df = get_updated_dataframe()
 
 
 @app.route("/")
@@ -30,9 +41,15 @@ def index():
 @app.route("/search")
 def search():
     driver_id = request.args.get("driverId")
-    print("Received Driver ID:", (driver_id))
+    print("Rece.ived Driver ID:", (driver_id))
+
+    # Get the updated DataFrame
+    global df
+    df = get_updated_dataframe()
+    
+    # Filter the DataFrame
     filtered_data = df[df["Driver Id"] == int(driver_id)]
-    return render_template("result.html", data=filtered_data.to_html(index=False)) 
+    return render_template("result.html", data=filtered_data.to_html(index=False))
 
 
 @app.route("/insert_data", methods=["POST"])
@@ -50,17 +67,11 @@ def insert_data():
         print("Received city:", (city))
         print("Received service type:", (service_type))
 
-        # Authorize and open the Google Sheet
-        # scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-        # creds = ServiceAccountCredentials.from_json_keyfile_name("your-credentials.json", scope)
         client = gspread.authorize(creds)
 
-        # Open the Google Sheet by title
-        # spreadsheet_title = "All Quality Judge (New process)"
-        sh = client.open(spreadsheet_title)
-
-        # worksheet name is "CC Cases"
-        # sheet = sh.worksheet("CC Cases")
+        # Get the updated DataFrame
+        global worksheet
+        worksheet = get_updated_worksheet()
 
         # Get the last empty row in column B
         next_row = len(worksheet.col_values(2)) + 1
