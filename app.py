@@ -51,26 +51,26 @@ def insert_data():
         print("Received service type:", (service_type))
 
         # Authorize and open the Google Sheet
-        scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-        creds = ServiceAccountCredentials.from_json_keyfile_name("your-credentials.json", scope)
+        # scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+        # creds = ServiceAccountCredentials.from_json_keyfile_name("your-credentials.json", scope)
         client = gspread.authorize(creds)
 
         # Open the Google Sheet by title
-        spreadsheet_title = "All Quality Judge (New process)"
+        # spreadsheet_title = "All Quality Judge (New process)"
         sh = client.open(spreadsheet_title)
 
         # worksheet name is "CC Cases"
-        sheet = sh.worksheet("CC Cases")
+        # sheet = sh.worksheet("CC Cases")
 
         # Get the last empty row in column B
-        next_row = len(sheet.col_values(2)) + 1
+        next_row = len(worksheet.col_values(2)) + 1
 
         # Insert data into the corresponding columns
-        sheet.update_cell(next_row, 1, str(datetime.now()))  # Insert current date in column A
-        sheet.update_cell(next_row, 2, driver_id)  # Insert driver ID in column B
-        sheet.update_cell(next_row, 3, reason)  # Insert reason in column C
-        sheet.update_cell(next_row, 7, city)  # Insert city in column G
-        sheet.update_cell(next_row, 8, service_type)  # Insert service type in column H
+        worksheet.update_cell(next_row, 1, str(datetime.now().strftime('%Y-%m-%d')))  # Insert current date in column A
+        worksheet.update_cell(next_row, 2, driver_id)  # Insert driver ID in column B
+        worksheet.update_cell(next_row, 3, reason)  # Insert reason in column C
+        worksheet.update_cell(next_row, 7, city)  # Insert city in column G
+        worksheet.update_cell(next_row, 8, service_type)  # Insert service type in column H
 
         return jsonify({"status": "success"})
     except Exception as e:
