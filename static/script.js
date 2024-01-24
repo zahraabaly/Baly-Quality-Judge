@@ -1,5 +1,9 @@
 
 function searchDriver() {
+
+    // Show loading spinner
+    document.getElementById("loadingSpinner").style.display = "block";
+
     var driverId = (document.getElementById("driverId").value);
     console.log("Driver ID:", driverId);
 
@@ -7,10 +11,17 @@ function searchDriver() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         console.log("ReadyState:", this.readyState, "Status:", this.status);
-        if (this.readyState == 4 && this.status == 200) {
-            console.log("Response:", this.responseText);
-            var resultTable = document.getElementById("resultTable");
-            resultTable.innerHTML = this.responseText;
+        if (this.readyState == 4) {
+            // Hide loading spinner regardless of success or failure
+            document.getElementById("loadingSpinner").style.display = "none";
+
+            if (this.status == 200) {
+                console.log("Response:", this.responseText);
+                var resultTable = document.getElementById("resultTable");
+                resultTable.innerHTML = this.responseText;
+            } else {
+                console.error("Error:", this.statusText);
+            }
         }
     };
 

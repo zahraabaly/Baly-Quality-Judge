@@ -21,9 +21,15 @@
         <label for="driverId">Driver ID:</label>
         <input type="text" id="driverId" placeholder="Enter Driver ID">
         <button onclick="searchDriver()">Search</button><br>
+
+        <!-- Add the loading spinner -->
+        <div id="loadingSpinner" class="spinner"></div>
+
         <table id="resultTable">
+            
             <!-- Table rows will be inserted here -->
         </table>
+
     </div>
 
     <div class="container">
